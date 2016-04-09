@@ -1,3 +1,7 @@
+// Copyright (C) 2016       0CBH0 <maodatou88@163.com>
+// Licensed under the terms of the GNU GPL, version 3
+// http://www.gnu.org/licenses/gpl-3.0.txt
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
