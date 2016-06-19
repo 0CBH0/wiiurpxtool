@@ -1,11 +1,5 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include <conio.h>
-#include <iostream>
 #include <io.h>
-#include <direct.h>
+#include <string.h>
 #include <vector>
 #include <algorithm> 
 #include <zlib.h>
