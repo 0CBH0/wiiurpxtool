@@ -173,7 +173,7 @@ int decompress(FILE *in, FILE *out)
 		fwrite32_BE(shdr_table[i].sh_addralign, out);
 		fwrite32_BE(shdr_table[i].sh_entsize, out);
 	}
-	fseek(in, crc_data_offset, 0);
+	fseek(out, crc_data_offset, 0);
 	for (u32 i=0; i<ehdr.e_shnum; i++)
 		fwrite32_BE(crcs[i], out);
 	delete[]crcs;
@@ -365,7 +365,7 @@ int compress(FILE *in, FILE *out)
 		fwrite32_BE(shdr_table[i].sh_addralign, out);
 		fwrite32_BE(shdr_table[i].sh_entsize, out);
 	}
-	fseek(in, crc_data_offset, 0);
+	fseek(out, crc_data_offset, 0);
 	for (u32 i=0; i<ehdr.e_shnum; i++)
 		fwrite32_BE(crcs[i], out);
 	delete[]crcs;
@@ -403,9 +403,9 @@ int main(int argc, char *argv[])
 	}
 	fclose(in);
 	fclose(out);
-	if(result == 0)
-		fcopy("temp.bin", argv[2]);
-	remove("temp.bin");
+	//if(result == 0)
+	//	fcopy("temp.bin", argv[2]);
+	//remove("temp.bin");
 	return 0;
 }
 
