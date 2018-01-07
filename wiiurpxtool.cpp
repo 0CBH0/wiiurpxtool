@@ -368,20 +368,27 @@ int compress(FILE *in, FILE *out)
 
 int main(int argc, char *argv[])
 {
-	if(argc != 3)
+	if(argc < 3)
 	{
-		printf("wiiurpxtool - version:1.2\n");
+		printf("wiiurpxtool - version:1.3\n");
 		printf("Compress or decompress RPL/RPX files for Wii U\n\n");
 		printf("Usage:\n");
 		printf("decompress:\n");
-		printf("wiiurpxtool -d [rpx_name]\n");
+		printf("wiiurpxtool -d <rpx_name> [out_name]\n");
 		printf("compress:\n");
-		printf("wiiurpxtool -c [rpx_name]\n");
+		printf("wiiurpxtool -c <rpx_name> [out_name]\n");
 		return 0;
 	}
 	FILE *in = fopen(argv[2], "rb");
 	if(in == NULL) return -1;
-	FILE *out = fopen("temp.bin", "wb");
+	FILE *out;
+	if(argc == 3)
+		out = fopen("temp.bin", "wb");
+	else
+	{
+		out = fopen(argv[3], "wb");
+		if (out == NULL) return -1;
+	}
 	s32 result = -1;
 	if(strcmp("-d", argv[1]) == 0)
 	{
@@ -395,7 +402,7 @@ int main(int argc, char *argv[])
 	}
 	fclose(in);
 	fclose(out);
-	if(result == 0)
+	if(argc == 3 && result == 0)
 		fcopy("temp.bin", argv[2]);
 	remove("temp.bin");
 	return 0;
