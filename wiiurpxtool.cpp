@@ -68,11 +68,6 @@ int decompress(FILE *in, FILE *out)
 	vector< Elf32_Shdr_Sort > shdr_table_index;
 	Elf32_Shdr *shdr_table = new Elf32_Shdr[ehdr.e_shnum];
 	while(ftell(out)<shdr_data_elf_offset) putc(0, out);
-	while(ftell(out)%0x40!=0)
-	{
-		putc(0, out);
-		shdr_data_elf_offset++;
-	}
 	fseek(in, ehdr.e_shoff, 0);
 	for (u32 i=0; i<ehdr.e_shnum; i++)
 	{
@@ -227,11 +222,6 @@ int compress(FILE *in, FILE *out)
 	vector< Elf32_Shdr_Sort > shdr_table_index;
 	Elf32_Shdr *shdr_table = new Elf32_Shdr[ehdr.e_shnum];
 	while(ftell(out)<shdr_data_elf_offset) putc(0, out);
-	while(ftell(out)%0x40!=0)
-	{
-		putc(0, out);
-		shdr_data_elf_offset++;
-	}
 	fseek(in, ehdr.e_shoff, 0);
 	for (u32 i=0; i<ehdr.e_shnum; i++)
 	{
