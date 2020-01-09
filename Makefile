@@ -7,7 +7,6 @@ OBJ=$(SRC:.cpp=.o)
 BIN=wiiurpxtool.exe
 
 all: $(ZLIBTARGET) $(BIN)
-	rm -f *.o
 	@echo Done
 
 $(BIN): $(OBJ)
