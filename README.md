@@ -3,6 +3,7 @@ Compress or decompress RPL/RPX files for Wii U.
 
 # Dependencies
 LLVM
+
 zlib
 
 # Credits
