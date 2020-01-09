@@ -1,5 +1,6 @@
+DEPPATH=./dep
 CXX=clang++
-CXXFLAGS=-g -Wall -pedantic -MT -static -Xclang -flto-visibility-public-std
+CXXFLAGS=-g -Wall -pedantic -MT -static -Xclang -flto-visibility-public-std -I $(DEPPATH)
 
 SRC=wiiurpxtool.cpp
 OBJ=$(SRC:.cpp=.o)
@@ -10,7 +11,7 @@ all: $(ZLIBTARGET) $(BIN)
 	@echo Done
 
 $(BIN): $(OBJ)
-	$(CXX) -o $(BIN) $^ -lzlibstat
+	$(CXX) -o $(BIN) $^ -L $(DEPPATH) -lzlibstat
 
 clean:
 	rm -f *.o
